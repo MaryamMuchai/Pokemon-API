@@ -1,6 +1,6 @@
 // import logo from './logo.svg';\
 import React, {useState,useEffect} from 'react';
-
+import PokemonThumb from './components/Thumb';
 function App() {
 
 const [allPokemons, setAllPokemons] = useState([])
@@ -31,11 +31,17 @@ useEffect(() => {
      <h1>Pokemon App</h1>
      <div className = "pokeman-container">
        <div className = "all-container">
-
+       {allPokemons.map( (pokemonStats, index) => 
+            <PokemonThumb
+              key={index}
+              image={pokemonStats.sprites.other.dream_world.front_default}
+              name={pokemonStats.name}
+              type={pokemonStats.types[0].type.name}
+            />)}
+          
+        </div>
+          <button className="load-more" onClick={() => getAllPokemons()}>Load more</button>
          </div>
-         <button className = "load-more">Load More</button>
-       </div>
-
     </div>
   );
 }
